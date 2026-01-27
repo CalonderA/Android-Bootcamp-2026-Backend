@@ -1374,5 +1374,5 @@
 
 <figure>
   <img src="docs/database_schema.png" alt="Диаграмма базы данных">
-  <figcaption>Рис. 1: Диаграмма базы данных </figcaption>
+  <figcaption>Рис. 1: Диаграмма базы данных. </figcaption>
 </figure>
