@@ -1370,3 +1370,9 @@
 &nbsp; a. Установка стандартных рабочих часов компании
 
 &nbsp; b. Настройка рабочих дней
+
+
+<figure>
+  <img src="docs/database_schema.png" alt="Диаграмма базы данных">
+  <figcaption>Рис. 1: Диаграмма базы данных </figcaption>
+</figure>
