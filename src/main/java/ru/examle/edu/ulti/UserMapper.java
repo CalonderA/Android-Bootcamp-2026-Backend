@@ -11,7 +11,7 @@ public class UserMapper {
         UserDTO dto = new UserDTO();
         dto.setId(user.getId());
         dto.setEmail(user.getEmail());
-        dto.setPasswordHash(user.getPasswordHash());
+        // Password hash should not be exposed
         dto.setFullName(user.getFullName());
         dto.setPosition(user.getPosition());
         dto.setDepartment(user.getDepartment());

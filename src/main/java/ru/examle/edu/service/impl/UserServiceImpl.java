@@ -1,6 +1,7 @@
 package ru.examle.edu.service.impl;
 
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import ru.examle.edu.dto.UserDTO;
@@ -18,6 +19,7 @@ public class UserServiceImpl implements UserService {
 
     private final UserRepository userRepository;
     private final UserMapper userMapper;
+    private final PasswordEncoder passwordEncoder;
 
     @Override
     public List<UserDTO> getAllUsers() {
@@ -47,6 +49,9 @@ public class UserServiceImpl implements UserService {
             throw new RuntimeException("User with email " + userDTO.getEmail() + " already exists");
         }
         User user = userMapper.toEntity(userDTO);
+        if (userDTO.getPasswordHash() != null && !userDTO.getPasswordHash().isEmpty()) {
+            user.setPasswordHash(passwordEncoder.encode(userDTO.getPasswordHash()));
+        }
         User savedUser = userRepository.save(user);
         return userMapper.toDTO(savedUser);
     }
@@ -63,7 +68,9 @@ public class UserServiceImpl implements UserService {
 
         // Update fields
         existingUser.setEmail(userDTO.getEmail());
-        existingUser.setPasswordHash(userDTO.getPasswordHash());
+        if (userDTO.getPasswordHash() != null && !userDTO.getPasswordHash().isEmpty()) {
+            existingUser.setPasswordHash(passwordEncoder.encode(userDTO.getPasswordHash()));
+        }
         existingUser.setFullName(userDTO.getFullName());
         existingUser.setPosition(userDTO.getPosition());
         existingUser.setDepartment(userDTO.getDepartment());

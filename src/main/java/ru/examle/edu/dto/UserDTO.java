@@ -1,5 +1,6 @@
 package ru.examle.edu.dto;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Data;
 import ru.examle.edu.entity.enums.UserRole;
 
@@ -10,7 +11,10 @@ import java.time.LocalTime;
 public class UserDTO {
     private Long id;
     private String email;
-    private String passwordHash; // In a real app, we wouldn't return this, but for simple CRUD...
+
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
+    private String passwordHash; 
+    
     private String fullName;
     private String position;
     private String department;

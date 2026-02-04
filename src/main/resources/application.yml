@@ -21,3 +21,8 @@ spring:
     hibernate:
       ddl-auto: none
     show-sql: true
+
+app:
+  jwt:
+    secret: mySecretKeyForBootcamp2026WhichIsVeryLongAndSecureEnough
+    expiration-ms: 86400000
